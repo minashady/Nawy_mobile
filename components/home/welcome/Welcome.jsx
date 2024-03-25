@@ -12,17 +12,17 @@ import { useRouter } from "expo-router";
 import styles from "./welcome.style";
 import { icons, SIZES } from "../../../constants";
 
-const jobTypes = ["Full-time", "Part-time", "Contractor"];
+const jobTypes = ["Compound", "Buy", "Rent"];
 
 const Welcome = ({ searchTerm, setSearchTerm, handleClick }) => {
   const router = useRouter();
-  const [activeJobType, setActiveJobType] = useState("Full-time");
+  const [activeJobType, setActiveJobType] = useState("Compound");
 
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.userName}>Hello user</Text>
-        <Text style={styles.welcomeMessage}>Find your dream job now</Text>
+        <Text style={styles.welcomeMessage}>Find your dream Home now</Text>
       </View>
 
       <View style={styles.searchContainer}>

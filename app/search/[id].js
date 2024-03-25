@@ -16,25 +16,20 @@ const JobSearch = () => {
     const [searchLoader, setSearchLoader] = useState(false);
     const [searchError, setSearchError] = useState(null);
     const [page, setPage] = useState(1);
+    
+    const API_BASE_URL = "http://192.168.1.111:3100";
 
     const handleSearch = async () => {
         setSearchLoader(true);
         setSearchResult([])
 
         try {
-            const options = {
-              method: "GET",
-              url: `https://jsearch.p.rapidapi.com/search`,
-              headers: {
-                "X-RapidAPI-Key":
-                  "59257ffa40mshac0c536f7538abep12f3dajsn9d075541e6f4",
-                "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
-              },
-              params: {
-                query: params.id,
-                page: page.toString(),
-              },
-            };
+             //const API_BASE_URL = "http://192.168.1.111:3100";
+             const options = {
+               method: "POST",
+               url: `${API_BASE_URL}/apartments/apartmentDetails?id=${query.id}`,
+               params: { ...query },
+             };
 
             const response = await axios.request(options);
             setSearchResult(response.data.data);

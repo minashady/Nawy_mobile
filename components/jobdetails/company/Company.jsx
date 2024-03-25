@@ -4,17 +4,25 @@ import { View, Text , Image, DevSettings} from 'react-native'
 import styles from './company.style'
 import {icons} from '../../../constants'
 import { checkImageURL } from '../../../utils'
+const images = {
+  apartment1: require("../../../assets/images/apartment1.jpg"),
+  apartment2: require("../../../assets/images/apartment3.jpg"),
+  apartment3: require("../../../assets/images/apartment2.jpg"),
+  apartment4: require("../../../assets/images/apartment5.jpg"),
+  apartment5: require("../../../assets/images/apartment4.jpg"),
+  apartment6: require("../../../assets/images/apartment3.jpg"),
+  apartment7: require("../../../assets/images/apartment2.jpg"),
+  apartment8: require("../../../assets/images/apartment1.jpg"),
+};
 
 const Company = ({companyLogo,jobTitle, companyName,location,details,publisher}) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
         <Image
-          source={{
-            uri: checkImageURL(companyLogo)
-              ? companyLogo
-              : "https://t4.ftcdn.net/jpg/05/05/61/73/360_F_505617309_NN1CW7diNmGXJfMicpY9eXHKV4sqzO5H.jpg",
-          }}
+          source={
+            images[companyLogo.replace("/assets/images/", "").replace(".jpg", "")]
+          }
           style={styles.logoImage}
         />
       </View>
@@ -34,7 +42,7 @@ const Company = ({companyLogo,jobTitle, companyName,location,details,publisher})
         </View>
       </View>
       <View style={styles.companyInfoBox}>
-        <Text style={styles.companyName}>Publisher: {publisher}</Text>
+        <Text style={styles.companyName}>Developer: {publisher}</Text>
       </View>
       {/* <View style={styles.companyInfoBox}>
         <Text style={styles.companyName}>Job Details: {details}</Text>

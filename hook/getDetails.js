@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
+import {useGlobalSearchParams } from "expo-router";
 import axios from "axios";
 
-const useFetch = (endpoint, query) => {
+const getDetails = (endpoint, query) => {
+    const params = useGlobalSearchParams();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-const API_BASE_URL = "http://192.168.1.111:3100";
+  const API_BASE_URL = "http://192.168.1.111:3100";
   const options = {
-    method: "GET",
-    url: `${API_BASE_URL}/apartments/getApartments`,
+    method: "POST",
+    url: `${API_BASE_URL}/apartments/apartmentDetails?id=${params.id}`,
     params: { ...query },
   };
 
@@ -38,4 +40,4 @@ const API_BASE_URL = "http://192.168.1.111:3100";
   return { data, loading, error, refetch };
 };
 
-export default useFetch;
+export default getDetails;

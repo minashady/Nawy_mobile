@@ -19,14 +19,15 @@ import {
 } from "../../components";
 import { COLORS, icons, SIZES } from "../../constants";
 import useFetch from "../../hook/useFetch";
+import getDetails from "../../hook/getDetails";
 
-const tabs = ["About", "Qualifications", "Responsibilities"];
+const tabs = ["About", "Measurements", "Payment Plan"];
 
 const JobDetails = () => {
   const params = useGlobalSearchParams();
   const router = useRouter();
 
-  const { data, isLoading, error, refetch } = useFetch("job-details", {
+  const { data, isLoading, error, refetch } = getDetails("job-details", {
     job_id: params.id,
   });
 
@@ -40,31 +41,7 @@ const JobDetails = () => {
   }, []);
 
   const displayTabContent = () => {
-    switch (activeTab) {
-      case "Qualifications":
-        return (
-          <Specifics
-            title="Qualifications"
-            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
-          />
-        );
-
-      case "About":
-        return (
-          <JobAbout info={data[0].job_description ?? "No data provided"} />
-        );
-
-      case "Responsibilities":
-        return (
-          <Specifics
-            title="Responsibilities"
-            points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
-          />
-        );
-
-      default:
-        return null;
-    }
+return <JobAbout info={data.description ?? "No data provided"} />;
   };
 
   return (
@@ -104,12 +81,12 @@ const JobDetails = () => {
           ) : (
             <View style={{ padding: SIZES.medium, paddingBottom: 100 }}>
               <Company
-                companyLogo={data[0].employer_logo}
-                jobTitle={data[0].job_title}
-                companyName={data[0].employer_name}
-                location={data[0].job_country}
+                companyLogo={data.image}
+                jobTitle={data.name}
+                companyName={data.price.$numberDecimal.toString()}
+                location={data.location}
                 //details={data[0].job_description}
-                publisher={data[0].job_publisher} 
+                publisher={data.developer}
               />
 
               <JobTabs
@@ -124,10 +101,8 @@ const JobDetails = () => {
         </ScrollView>
 
         <JobFooter
-          url={
-            data[0]?.job_google_link ??
-            "https://careers.google.com/jobs/results/"
-          }
+          
+          
         />
       </>
     </SafeAreaView>
