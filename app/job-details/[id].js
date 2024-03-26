@@ -85,8 +85,9 @@ return <JobAbout info={data.description ?? "No data provided"} />;
                 jobTitle={data.name}
                 companyName={data.price.$numberDecimal.toString()}
                 location={data.location}
-                //details={data[0].job_description}
+                details={data.description}
                 publisher={data.developer}
+                compound={data.compound}
               />
 
               <JobTabs

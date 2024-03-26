@@ -15,13 +15,15 @@ const images = {
   apartment8: require("../../../assets/images/apartment1.jpg"),
 };
 
-const Company = ({companyLogo,jobTitle, companyName,location,details,publisher}) => {
+const Company = ({companyLogo,jobTitle, companyName,location,details,publisher,compound}) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoBox}>
         <Image
           source={
-            images[companyLogo.replace("/assets/images/", "").replace(".jpg", "")]
+            images[
+              companyLogo.replace("/assets/images/", "").replace(".jpg", "")
+            ]
           }
           style={styles.logoImage}
         />
@@ -43,6 +45,10 @@ const Company = ({companyLogo,jobTitle, companyName,location,details,publisher})
       </View>
       <View style={styles.companyInfoBox}>
         <Text style={styles.companyName}>Developer: {publisher}</Text>
+        {compound === "true"? <Text style={styles.locationName}>/ compound</Text>:null}
+      </View>
+      <View style={styles.companyInfoBox}>
+        <Text style={styles.locationName}> {details}</Text>
       </View>
       {/* <View style={styles.companyInfoBox}>
         <Text style={styles.companyName}>Job Details: {details}</Text>
