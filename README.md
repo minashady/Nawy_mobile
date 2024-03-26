@@ -43,7 +43,7 @@ Additional libraries used:
 
 
 ## Docker
-Docker not possible here as backend is in the Next.js app found here [Nawy](https://github.com/minashady)
+Docker not possible here as backend is in the Next.js app found here [Nawy](https://github.com/minashady/Nawy)
 
 Once there you can use to docker to get the backend working
 
